@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BOPPS – Extend Your Warranty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@700;800&family=Inter:wght@700;800;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:        #0d1b2e;
+      --orange:      #f97316;
+      --orange-dark: #ea6500;
+      --white:       #ffffff;
+      --light:       #f5f6f8;
+      --text:        #1a1a2e;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--light); color: var(--text); }
+
+    /* ── UNIFIED HEADER ── */
+    .header-wrapper { background: rgb(1,4,17); position: sticky; top: 0; z-index: 100; }
+    .header-top {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 70px; position: relative;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .header-left { display: flex; align-items: center; gap: 20px; }
+    .header-left svg, .header-right svg { stroke: rgba(255,255,255,.8); cursor: pointer; transition: stroke .2s; }
+    .header-left svg:hover, .header-right svg:hover { stroke: #fff; }
+    .header-logo {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      font-size: 2rem; font-weight: 900; color: #fff;
+      letter-spacing: 4px; text-decoration: none;
+    }
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .header-nav {
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: flex; justify-content: center; gap: 40px;
+    }
+    .header-nav a {
+      color: rgba(255,255,255,.75); text-decoration: none;
+      font-size: .95rem; font-weight: 400;
+      padding: 12px 0; display: inline-block;
+      border-bottom: 2px solid transparent; transition: color .2s;
+    }
+    .header-nav a:hover { color: #fff; }
+    .header-nav a.active { color: #fff; font-weight: 700; border-bottom: 2px solid #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--white);
+      padding: 24px 24px 56px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900; margin-bottom: 24px; line-height: 1.2;
+    }
+    .hero h1 span {
+      color: var(--orange);
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+    }
+    .hero p {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      font-weight: 700;
+      color: #333; max-width: 640px; margin: 0 auto 32px;
+      line-height: 1.75;
+    }
+    /* Service list – match ATGIH list sizing */
+    .service-list {
+      list-style: none; margin-bottom: 40px;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .service-list li {
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      color: #555; font-weight: 500;
+    }
+    .service-list li::before { content: ""; }
+
+    /* ── BUTTONS – exact ATGIH size ── */
+    .btn-group {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 18px;
+    }
+    .btn-contact {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #ff7500;
+      color: #fff;
+      border: none; border-radius: 10px;
+      width: 350px; height: 50px;
+      font-size: 24px;
+      font-weight: 700; cursor: pointer;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .btn-contact:hover { background: #e06800; }
+    @media (max-width: 767px) {
+      .btn-contact { width: 200px; height: 45px; font-size: 15px; }
+    }
+
+    /* ── STATS CARD – match ATGIH sizing ── */
+    .stats-card {
+      max-width: 1000px; margin: 60px auto;
+      background: linear-gradient(135deg,#f8f9fa 0%,#ffffff 100%);
+      border: 2px solid var(--orange);
+      border-top: 6px solid var(--orange);
+      border-radius: 16px; padding: 60px 40px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,.05),
+                  0 0 0 1px rgba(249,115,22,.1) inset;
+      position: relative; overflow: hidden;
+    }
+    .stats-card::before {
+      content:'';
+      position:absolute; inset:0;
+      background-image:
+        radial-gradient(circle at 15% 50%,rgba(249,115,22,.05) 0%,transparent 20%),
+        radial-gradient(circle at 85% 30%,rgba(249,115,22,.05) 0%,transparent 20%);
+    }
+    .stats-card h2 {
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 700; color: #2c3e50;
+      margin-bottom: 40px; line-height: 1.2;
+      position: relative; z-index: 1;
+      letter-spacing: -.5px;
+    }
+    .stats-card h2 span {
+      color: var(--orange); font-weight: 800;
+      position: relative; display: inline-block;
+    }
+    .stats-card h2 span::after {
+      content:'';
+      position:absolute; bottom:4px; left:0;
+      width:100%; height:8px;
+      background:rgba(249,115,22,.18);
+      border-radius:4px; z-index:-1;
+    }
+    .stats-grid {
+      display: flex; flex-direction: column;
+      gap: 20px; position: relative; z-index: 1;
+    }
+    .stats-row {
+      display: flex; justify-content: center;
+      gap: 60px;
+    }
+    .stat-item {
+      color: #4a5568;
+      font-size: clamp(1.2rem, 2vw, 1.9rem);
+      font-weight: 500; text-align: left;
+      min-width: 200px;
+      padding: 8px 0;
+      border-bottom: 2px solid transparent;
+      transition: all .3s;
+    }
+    .stat-item:hover {
+      color: #2c3e50;
+      transform: translateY(-2px);
+      border-bottom-color: rgba(249,115,22,.3);
+    }
+    .stat-item::before {
+      content:"✓"; color:var(--orange);
+      font-weight:900; margin-right:10px;
+    }
+
+    /* ── DIVIDER ── */
+    hr { border:none; border-top:1px solid #e0e0e0; margin:0 auto; max-width:1000px; }
+
+    /* ── FAQ – answers always visible ── */
+    .faq-section {
+      padding: 70px 24px 60px;
+      max-width: 1000px; margin: 0 auto;
+    }
+    .faq-section h2 {
+      text-align: center;
+      font-size: clamp(1.8rem, 5vw, 4rem);
+      font-weight: 700; margin-bottom: clamp(30px,4vw,50px);
+      color: #333;
+    }
+    .faq-item {
+      background: var(--white); border-radius: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #e6e6e6;
+      overflow: hidden;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .faq-item:hover {
+      border-color: var(--orange);
+      box-shadow: 0 4px 12px rgba(249,115,22,.15);
+    }
+    /* Question row */
+    .faq-q {
+      width: 100%; background: var(--white);
+      padding: clamp(16px,3vw,25px) clamp(16px,3vw,30px);
+      text-align: left;
+      font-size: clamp(1.1rem, 2.2vw, 2rem);
+      font-weight: 600; color: #333;
+      font-family: 'DM Sans', sans-serif;
+      border: none; cursor: default;
+      display: block;
+    }
+    /* Q: / A: label */
+    .faq-label {
+      color: var(--orange);
+      font-weight: 800;
+      margin-right: 6px;
+    }
+    /* Answer always shown */
+    .faq-a {
+      padding: 0 clamp(16px,3vw,30px) clamp(16px,3vw,24px);
+      font-size: clamp(1rem, 1.8vw, 1.8rem);
+      color: #555; line-height: 1.75;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    /* ── WARRANTY POLICY ── */
+    .policy-section {
+      max-width: 1000px; margin: 0 auto;
+      padding: 48px 24px 64px;
+    }
+    .policy-section h3 {
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 700; margin-bottom: 16px;
+    }
+    .policy-section h4 {
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-weight: 700; margin: 24px 0 10px;
+    }
+    .policy-section p, .policy-section li {
+      font-size: clamp(.95rem, 1.8vw, 1.3rem);
+      color: #555; line-height: 1.85; margin-bottom: 12px;
+    }
+    .policy-section ol li {
+      font-weight: 700; color: #333;
+    }
+    .policy-section ol { padding-left: 22px; }
+    .policy-section a { color: var(--orange); text-decoration: none; }
+    .policy-section a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    /* ── FOOTER / NEWSLETTER – match ATGIH color-scheme-3 ── */
+    footer {
+      background: rgb(1,4,17);
+      padding: 28px 2rem 40px;
+      text-align: center;
+    }
+    /* Title – h2 styled as h1 like ATGIH */
+    .newsletter-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .newsletter-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,.75);
+      margin-bottom: 24px;
+    }
+    /* Field wrapper – matches Shopify Refresh .field */
+    .newsletter-field {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      width: min(480px, 90vw);
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .newsletter-field input {
+      flex: 1;
+      padding: 22px 20px 8px;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .newsletter-field input::placeholder { color: transparent; }
+    /* Floating label */
+    .newsletter-field label {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      color: rgba(255,255,255,.65);
+      pointer-events: none;
+      transition: top .15s, font-size .15s, color .15s;
+    }
+    .newsletter-field input:focus + label,
+    .newsletter-field input:not(:placeholder-shown) + label {
+      top: 10px;
+      transform: none;
+      font-size: .72rem;
+      color: rgba(255,255,255,.5);
+    }
+    /* Arrow submit button */
+    .newsletter-field button {
+      background: none;
+      border: none;
+      border-left: 1px solid rgba(255,255,255,.3);
+      padding: 0 18px;
+      height: 100%;
+      cursor: pointer;
+      color: #fff;
+      display: flex; align-items: center;
+      transition: background .2s;
+    }
+    .newsletter-field button:hover { background: rgba(255,255,255,.08); }
+    .newsletter-field button svg { display: block; }
+    .footer-bottom {
+      margin-top: 28px;
+      color: rgba(255,255,255,.3);
+      font-size: .78rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .stats-row { gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .stats-card { padding: 40px 24px; margin: 40px 16px; }
+      .stats-row { flex-wrap: wrap; justify-content: center; gap: 16px 30px; }
+      .stat-item { min-width: 150px; text-align: center; font-size: 1.5rem; }
+      /* list items left-aligned, block itself stays centered */
+      .service-list { align-items: flex-start; display: inline-flex; }
+      .hero { display: flex; flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 480px) {
+      .stats-card { padding: 30px 16px; }
+      .stats-row { gap: 12px 16px; }
+    }
+    /* ── UNIFIED FOOTER ── */
+    .footer-subscribe { background: rgb(1,4,17); padding: 40px 40px 0; text-align: center; }
+    .footer-subscribe h2 { font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .footer-subscribe p.sub { color: rgba(255,255,255,.65); font-size: 1rem; margin-bottom: 20px; }
+    .footer-subscribe > p { color: rgba(255,255,255,.65); font-size: 1rem; margin-bottom: 20px; }
+    .newsletter-field {
+      display: inline-flex; align-items: center;
+      width: min(460px, 88vw);
+      border: 1px solid rgba(255,255,255,.45); border-radius: 30px; overflow: hidden;
+    }
+    .newsletter-field input { flex: 1; padding: 14px 20px; background: transparent; border: none; outline: none; color: #fff; font-size: 1rem; }
+    .newsletter-field input::placeholder { color: rgba(255,255,255,.5); }
+    .newsletter-field button { background: none; border: none; border-left: 1px solid rgba(255,255,255,.3); padding: 0 20px; height: 50px; cursor: pointer; color: #fff; display: flex; align-items: center; }
+    .newsletter-field button:hover { background: rgba(255,255,255,.1); }
+    .footer-columns {
+      background: rgb(1,4,17);
+      display: flex; justify-content: space-between; flex-wrap: nowrap;
+      padding: 48px 60px 32px; gap: 32px;
+      border-top: 1px solid rgba(255,255,255,.08); margin-top: 0;
+    }
+    .footer-col h3 { color: #fff; font-size: 1rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 16px; text-transform: uppercase; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { color: rgba(255,255,255,.65); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-col p { color: rgba(255,255,255,.65); font-size: .9rem; line-height: 1.7; }
+    .footer-col strong { color: #fff; }
+    .footer-bottom { background: rgb(1,4,17); text-align: center; padding: 16px 40px 24px; color: rgba(255,255,255,.3); font-size: .78rem; border-top: 1px solid rgba(255,255,255,.06); }
+    .footer-bottom a { color: rgba(255,255,255,.4); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header-wrapper">
+  <div class="header-top">
+    <div class="header-left">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+    </div>
+    <a href="/" class="header-logo">BOPPS</a>
+    <div class="header-right">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <a href="/pages/extend-your-warranty-1.html" class="active">Extend Your Warranty</a>
+    <a href="/">HOME</a>
+    <a href="/pages/contact.html">Contact Us</a>
+  </nav>
+</div>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <h1><span>BOPPS</span> Official Support</h1>
+  <p>Thanks for your purchase! Click the button below to send your Amazon order number and service option.</p>
+
+  <ul class="service-list">
+    <li>A. Join Our Product Testing Program</li>
+    <li>B. Activate Your Warranty</li>
+    <li>C. Need Help with a Product Issue</li>
+  </ul>
+
+  <div class="btn-group">
+
+    <!-- Email button -->
+    <a href="mailto:vip-welfare@outlook.com?subject=Customer%20Service&body=" class="btn-contact">
+      Contact Us by Email
+    </a>
+
+    <a href="https://wa.me/8613480672453?text=Hi%20BOPPS%20Support%2C%20my%20Amazon%20order%20number%20is%3A%20" target="_blank" class="btn-contact">
+      Contact Us by WhatsApp
+    </a>
+
+  </div>
+</div>
+
+<!-- ══ STATS CARD ══ -->
+<div class="stats-card">
+  <h2><span id="warrantyCounter">216,040+</span> Customers Have Activated Their Warranty</h2>
+  <div class="stats-grid">
+    <div class="stats-row">
+      <div class="stat-item">30 Days Free Trial</div>
+      <div class="stat-item">1 Year Warranty</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item">Lifetime Customer Support</div>
+      <div class="stat-item">24/7 After-Sales Service</div>
+    </div>
+  </div>
+</div>
+
+<hr/>
+
+<!-- ══ FAQ – answers displayed directly ══ -->
+<div class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      <span class="faq-label">Q:</span> Why do you need my Amazon order number?
+
+    </div>
+    <div class="faq-a">
+      <span class="faq-label">A:</span> It allows us to verify your purchase and activate your warranty.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      <span class="faq-label">Q:</span> How long does activation take?
+
+    </div>
+    <div class="faq-a">
+      <span class="faq-label">A:</span> Once we receive your message, your warranty will be activated.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      <span class="faq-label">Q:</span> Will you access my Amazon account?
+
+    </div>
+    <div class="faq-a">
+      <span class="faq-label">A:</span> No. We only need the order number for verification.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      <span class="faq-label">Q:</span> Where can I find my order number?
+
+    </div>
+    <div class="faq-a">
+      <span class="faq-label">A:</span> Go to "Your Orders" on Amazon and find the order number for this product.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">
+      <span class="faq-label">Q:</span> What if my product has issues later?
+
+    </div>
+    <div class="faq-a">
+      <span class="faq-label">A:</span> Contact us anytime via Email or WhatsApp — we'll replace it if needed.
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ WARRANTY POLICY ══ -->
+<div class="policy-section">
+  <h3>Warranty Policy</h3>
+  <p>
+    BOPPS is committed to making you satisfied with our products and services. All BOPPS products come with a 1-year warranty. If you would like to activate the lifetime warranty, please contact our customer service via email at
+    <a href="mailto:vip-welfare@outlook.com">vip-welfare@outlook.com</a>.
+  </p>
+  <p>
+    By using BOPPS products, you agree to be bound by the terms of the BOPPS Limited Warranty. Please read the following information for specific warranty policy content.
+  </p>
+  <ol>
+    <li>Product Quality Guarantee</li>
+    <li>Warranty Period and Channels</li>
+    <li>Warranty Coverage</li>
+  </ol>
+
+  <h4>1. Product Quality Guarantee</h4>
+  <p>
+    BOPPS products undergo professional testing and certification, yet rare occurrences cannot be entirely avoided. If you encounter any quality issues with BOPPS products, please feel free to contact our customer service team at any time.
+  </p>
+
+  <h4>2. Warranty Period and Channels</h4>
+  <p>
+    All BOPPS products purchased through authorized channels have a 1-year warranty from the date of packaging delivery.
+  </p>
+  <p>
+    The warranty period starts once the product is received by the original purchaser. If you believe your BOPPS product has quality issues, please contact our customer support within the warranty period and provide proof of purchase. Our professional BOPPS customer service team will contact you within 24 business hours to provide a solution.
+  </p>
+  <p>
+    BOPPS products are sold on our official website, Amazon, and other official channels. Additionally, manufacturers, suppliers, or resellers might offer their own warranties. Please reach out to your seller for further details.
+  </p>
+  <p>
+    To ensure you receive a legitimate product, we strongly advise purchasing from one of the aforementioned channels. We have received reports of fraudulent orders from other sources.
+  </p>
+
+  <h4>3. Warranty Coverage</h4>
+  <p>Our warranty policy excludes the following items:</p>
+  <p>
+    Damage caused by human factors, including but not limited to misuse or improper use. Damage caused by force majeure such as natural disasters or accidents. Failure to provide sufficient proof of purchase. Free products (such as test products, user program promotional products, etc.).
+  </p>
+  <p>
+    Products that have exceeded the warranty period. Products purchased through unofficial channels. Non-quality-related issues reported after 30 days from the date of purchase. Product loss or theft. Defects or damages caused by non-compliance with official instructions or manuals, modification, or disassembly of the product. Please feel free to contact us if you have any quality-related issues.
+  </p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-subscribe">
+  <h2>Subscribe to our emails</h2>
+  <p>Be the first to know about new collections and exclusive offers.</p>
+  <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST" style="display:inline-block;width:min(460px,88vw);">
+    <input type="hidden" name="access_key" value="199bd70b-ec93-4748-93f5-2ceecdaf9520">
+    <input type="hidden" name="subject" value="BOPPS Newsletter Subscription">
+    <div class="newsletter-field">
+      <input type="email" name="email" placeholder="Email" required>
+      <button type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10" width="14" height="10">
+          <path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"/>
+        </svg>
+      </button>
+    </div>
+    <p id="nl-result" style="display:none;margin-top:10px;font-size:.9rem;color:#6ee7b7;"></p>
+  </form>
+</div>
+
+<div class="footer-columns">
+  <div class="footer-col">
+    <h3>Service</h3>
+    <ul>
+      <li><a href="/pages/contact.html">Contact Us</a></li>
+      <li><a href="/pages/extend-your-warranty-1.html">Extend Your Warranty</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <p>
+      <strong>Company:</strong> Shenzhen Huaruixin E-commerce Co., Ltd.<br>
+      <strong>Email:</strong> vip-welfare@outlook.com<br>
+      <strong>Address:</strong> Room 210, No. 2, Longwu Industrial Zone, Shangfen Community, Minzhi Street, Longhua District, Shenzhen
+    </p>
+  </div>
+</div>
+
+<div class="footer-bottom">
+  &copy; 2026, <a href="/">BOPPS</a>
+</div>
+
+<script>
+  // Auto-increment warranty counter daily (same logic as ATGIH)
+  (function () {
+    const el = document.getElementById('warrantyCounter');
+    if (!el) return;
+    const startDate   = new Date('2024-01-01');
+    const startNumber = 200000;
+    const dailyRate   = 20;
+    const days = Math.floor((new Date() - startDate) / 86400000);
+    el.textContent = (startNumber + days * dailyRate).toLocaleString() + '+';
+  })();
+</script>
+
+<script>
+  const nlForm = document.getElementById("newsletter-form");
+  if (nlForm) {
+    nlForm.addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const btn = nlForm.querySelector("button[type=submit]");
+      const result = document.getElementById("nl-result");
+      btn.disabled = true;
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST", body: new FormData(nlForm)
+        });
+        const json = await res.json();
+        if (json.success) {
+          result.textContent = "✅ Subscribed successfully!";
+          result.style.color = "#6ee7b7";
+          nlForm.reset();
+        } else {
+          result.textContent = "❌ Failed. Please try again.";
+          result.style.color = "#fca5a5";
+        }
+      } catch(err) {
+        result.textContent = "❌ Network error. Please try again.";
+        result.style.color = "#fca5a5";
+      }
+      result.style.display = "block";
+      btn.disabled = false;
+    });
+  }
+</script>
+</body>
+</html>
+
+
