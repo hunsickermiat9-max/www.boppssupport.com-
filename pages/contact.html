@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us – BOPPS</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; }
+
+    /* ── UNIFIED HEADER ── */
+    .header-wrapper { background: rgb(1,4,17); position: sticky; top: 0; z-index: 100; }
+    .header-top {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 70px; position: relative;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .header-left { display: flex; align-items: center; gap: 20px; }
+    .header-left svg, .header-right svg { stroke: rgba(255,255,255,.8); cursor: pointer; transition: stroke .2s; }
+    .header-left svg:hover, .header-right svg:hover { stroke: #fff; }
+    .header-logo {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      font-size: 2rem; font-weight: 900; color: #fff;
+      letter-spacing: 4px; text-decoration: none;
+    }
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .header-nav {
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: flex; justify-content: center; gap: 40px;
+    }
+    .header-nav a {
+      color: rgba(255,255,255,.75); text-decoration: none;
+      font-size: .95rem; font-weight: 400;
+      padding: 12px 0; display: inline-block;
+      border-bottom: 2px solid transparent; transition: color .2s;
+    }
+    .header-nav a:hover { color: #fff; }
+    .header-nav a.active { color: #fff; font-weight: 700; border-bottom: 2px solid #fff; }
+
+    /* ── CONTACT CONTENT ── */
+    .contact-wrap {
+      max-width: 760px; margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+    .contact-wrap h2 {
+      font-size: 1.5rem; font-weight: 700;
+      color: #1a1a2e; text-align: center;
+      margin-bottom: 32px;
+    }
+    .contact-info { margin-bottom: 40px; }
+    .contact-info p {
+      font-size: .95rem; color: #333; line-height: 1.85;
+      margin-bottom: 14px;
+    }
+    .contact-info strong { color: #1a1a2e; }
+
+    /* ── FORM ── */
+    .form-title {
+      font-size: 1.5rem; font-weight: 700;
+      color: #1a1a2e; text-align: center;
+      margin-bottom: 28px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block; font-size: .9rem;
+      color: #333; margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; padding: 12px 14px;
+      border: 1px solid #d0d0d0; border-radius: 4px;
+      font-size: .95rem; font-family: 'DM Sans', sans-serif;
+      outline: none; transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: #1a1a2e; }
+    .form-group textarea { resize: vertical; min-height: 140px; }
+    .submit-btn {
+      width: 100%; padding: 14px;
+      background: #1a1a2e; color: #fff;
+      border: none; border-radius: 4px;
+      font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: background .2s;
+    }
+    .submit-btn:hover { background: #2d3a5e; }
+
+    /* ── FOOTER ── */
+    .footer-subscribe {
+      background: rgb(1,4,17); padding: 40px 40px 0;
+      text-align: center;
+    }
+    .footer-subscribe h2 {
+      font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 10px;
+    }
+    .footer-subscribe p { color: rgba(255,255,255,.65); font-size: 1rem; margin-bottom: 20px; }
+    .newsletter-field {
+      display: inline-flex; align-items: center;
+      width: min(460px, 88vw);
+      border: 1px solid rgba(255,255,255,.45); border-radius: 30px; overflow: hidden;
+    }
+    .newsletter-field input {
+      flex: 1; padding: 14px 20px; background: transparent;
+      border: none; outline: none; color: #fff; font-size: 1rem;
+    }
+    .newsletter-field input::placeholder { color: rgba(255,255,255,.5); }
+    .newsletter-field button {
+      background: none; border: none; border-left: 1px solid rgba(255,255,255,.3);
+      padding: 0 20px; height: 50px; cursor: pointer; color: #fff;
+      display: flex; align-items: center;
+    }
+    .newsletter-field button:hover { background: rgba(255,255,255,.1); }
+    .footer-columns {
+      background: rgb(1,4,17);
+      display: flex; justify-content: space-between; flex-wrap: nowrap;
+      padding: 48px 60px 32px; gap: 32px;
+      border-top: 1px solid rgba(255,255,255,.08); margin-top: 40px;
+    }
+    .footer-col h3 {
+      color: #fff; font-size: 1rem; font-weight: 700;
+      letter-spacing: 1px; margin-bottom: 16px; text-transform: uppercase;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,.65); text-decoration: none; font-size: .9rem; transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-col p { color: rgba(255,255,255,.65); font-size: .9rem; line-height: 1.7; }
+    .footer-col strong { color: #fff; }
+    .footer-bottom {
+      background: rgb(1,4,17); text-align: center;
+      padding: 16px 40px 24px;
+      color: rgba(255,255,255,.3); font-size: .78rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .footer-bottom a { color: rgba(255,255,255,.4); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .footer-columns { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header-wrapper">
+  <div class="header-top">
+    <div class="header-left">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+    </div>
+    <a href="/" class="header-logo">BOPPS</a>
+    <div class="header-right">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <a href="/pages/extend-your-warranty-1.html">Extend Your Warranty</a>
+    <a href="/">HOME</a>
+    <a href="/pages/contact.html" class="active">Contact Us</a>
+  </nav>
+</div>
+
+<!-- CONTACT CONTENT -->
+<div class="contact-wrap">
+
+  <h2>Got a question?</h2>
+
+  <div class="contact-info">
+    <p>If you have any questions about the products of our company or our website, please feel free to contact us. We are more than happy to answer and help you.</p>
+    <p>Please feel free to contact us by filling out the email form below, and our customer service team will respond to emails in the first order they are received. We will respond to your email as soon as possible, within 1 business day.</p>
+    <p>Normal Business Hours: Mon - Fri: 6:00 PM - 3:00 AM (PT)</p>
+    <p><strong>Email: vip-welfare@outlook.com</strong></p>
+    <p>Tel: +86 13480672453&nbsp;&nbsp;Mon - Fri: 9:00 AM - 9:00 PM (PT)</p>
+    <p>Company Name: Shenzhen Huaruixin E-commerce Co., Ltd.</p>
+    <p>Address: Room 210, No. 2, Longwu Industrial Zone, Shangfen Community, Minzhi Street, Longhua District, Shenzhen.</p>
+  </div>
+
+  <h2 class="form-title">Submit a question!</h2>
+
+  <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="199bd70b-ec93-4748-93f5-2ceecdaf9520">
+    <input type="hidden" name="subject" value="BOPPS Contact Form Submission">
+    <input type="hidden" name="redirect" value="false">
+    <div class="form-group">
+      <label>Your Name (required)</label>
+      <input type="text" name="name" placeholder="Enter your name" required/>
+    </div>
+    <div class="form-group">
+      <label>Your Email (required) <sup>*</sup></label>
+      <input type="email" name="email" placeholder="Enter your mail" required/>
+    </div>
+    <div class="form-group">
+      <label>Your Message</label>
+      <textarea name="message" placeholder="Some words about yourself"></textarea>
+    </div>
+    <button class="submit-btn" type="submit">Submit</button>
+    <p id="form-result" style="margin-top:14px;text-align:center;font-size:.95rem;color:green;display:none;"></p>
+  </form>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer-subscribe">
+  <h2>Subscribe to our emails</h2>
+  <p>Be the first to know about new collections and exclusive offers.</p>
+  <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST" style="display:inline-block;width:min(460px,88vw);">
+    <input type="hidden" name="access_key" value="199bd70b-ec93-4748-93f5-2ceecdaf9520">
+    <input type="hidden" name="subject" value="BOPPS Newsletter Subscription">
+    <div class="newsletter-field">
+      <input type="email" name="email" placeholder="Email" required>
+      <button type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10" width="14" height="10">
+          <path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"/>
+        </svg>
+      </button>
+    </div>
+    <p id="nl-result" style="display:none;margin-top:10px;font-size:.9rem;color:#6ee7b7;"></p>
+  </form>
+</div>
+
+<div class="footer-columns">
+  <div class="footer-col">
+    <h3>Service</h3>
+    <ul>
+      <li><a href="/pages/contact.html">Contact Us</a></li>
+      <li><a href="/pages/extend-your-warranty-1.html">Extend Your Warranty</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <p>
+      <strong>Company:</strong> Shenzhen Huaruixin E-commerce Co., Ltd.<br>
+      <strong>Email:</strong> vip-welfare@outlook.com<br>
+      <strong>Address:</strong> Room 210, No. 2, Longwu Industrial Zone, Shangfen Community, Minzhi Street, Longhua District, Shenzhen
+    </p>
+  </div>
+</div>
+
+<div class="footer-bottom">
+  &copy; 2026, <a href="/">BOPPS</a>
+</div>
+
+<script>
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    const result = document.getElementById('form-result');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const data = new FormData(form);
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST', body: data
+      });
+      const json = await res.json();
+      if (json.success) {
+        result.textContent = '✅ Your message has been sent successfully! We will reply within 1 business day.';
+        result.style.color = '#16a34a';
+        form.reset();
+      } else {
+        result.textContent = '❌ Submission failed: ' + (json.message || 'Please try again.');
+        result.style.color = '#dc2626';
+      }
+    } catch(err) {
+      result.textContent = '❌ Network error. Please check your connection and try again.';
+      result.style.color = '#dc2626';
+    }
+    result.style.display = 'block';
+    btn.textContent = 'Submit';
+    btn.disabled = false;
+  });
+</script>
+<script>
+  // Newsletter form
+  const nlForm = document.getElementById('newsletter-form');
+  if (nlForm) {
+    nlForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = nlForm.querySelector('button[type=submit]');
+      const result = document.getElementById('nl-result');
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST', body: new FormData(nlForm)
+        });
+        const json = await res.json();
+        if (json.success) {
+          result.textContent = '✅ Subscribed successfully!';
+          result.style.color = '#6ee7b7';
+          nlForm.reset();
+        } else {
+          result.textContent = '❌ Failed. Please try again.';
+          result.style.color = '#fca5a5';
+        }
+      } catch(err) {
+        result.textContent = '❌ Network error. Please try again.';
+        result.style.color = '#fca5a5';
+      }
+      result.style.display = 'block';
+      btn.disabled = false;
+    });
+  }
+</script>
+</body>
+</html>
+
