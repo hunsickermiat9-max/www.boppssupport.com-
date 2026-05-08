@@ -47,47 +47,48 @@
     }
     .header-nav a:hover { color: #fff; }
     .header-nav a.active { color: #fff; font-weight: 700; border-bottom: 2px solid #fff; }
-    /* ── MOBILE HAMBURGER ── */
-.hamburger {
-  display: none; flex-direction: column; justify-content: center;
-  gap: 5px; cursor: pointer; padding: 4px;
-  background: none; border: none;
-}
-.hamburger span {
-  display: block; width: 22px; height: 2px;
-  background: #fff; border-radius: 2px;
-  transition: all .3s;
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.mobile-nav {
-  display: none; flex-direction: column;
-  background: rgb(1,4,17);
-  border-top: 1px solid rgba(255,255,255,.1);
-}
-.mobile-nav.open { display: flex; }
-.mobile-nav a {
-  color: rgba(255,255,255,.8); text-decoration: none;
-  font-size: 1rem; font-weight: 500;
-  padding: 14px 24px;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  transition: background .2s;
-}
-.mobile-nav a:hover { background: rgba(255,255,255,.05); }
-.mobile-nav a.active { color: #fff; font-weight: 700; }
 
-@media (max-width: 768px) {
-  .header-top { padding: 0 20px; }
-  .header-left svg { display: none; }
-  .hamburger { display: flex; }
-  .header-nav { display: none; }
-  .footer-columns { flex-wrap: wrap; padding: 32px 24px; }
-}
-@media (min-width: 769px) {
-  .hamburger { display: none; }
-  .mobile-nav { display: none !important; }
-}
+    /* ── MOBILE HAMBURGER ── */
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; cursor: pointer; padding: 4px;
+      background: none; border: none;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: #fff; border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav {
+      display: none; flex-direction: column;
+      background: rgb(1,4,17);
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      color: rgba(255,255,255,.8); text-decoration: none;
+      font-size: 1rem; font-weight: 500;
+      padding: 14px 24px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      transition: background .2s;
+    }
+    .mobile-nav a:hover { background: rgba(255,255,255,.05); }
+    .mobile-nav a.active { color: #fff; font-weight: 700; }
+
+    @media (max-width: 768px) {
+      .header-top { padding: 0 20px; }
+      .header-left svg { display: none; }
+      .hamburger { display: flex; }
+      .header-nav { display: none; }
+      .footer-columns { flex-wrap: wrap; padding: 32px 24px; }
+    }
+    @media (min-width: 769px) {
+      .hamburger { display: none; }
+      .mobile-nav { display: none !important; }
+    }
 
     /* ── HERO ── */
     .hero {
@@ -416,21 +417,31 @@
 <div class="header-wrapper">
   <div class="header-top">
     <div class="header-left">
-      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
-      <button class="hamburger" id="hamburger" aria-label="Menu"><br/>  <span></span><span></span><span></span><br/></button>
+      <!-- desktop: search icon -->
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="rgba(255,255,255,.8)" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+      <!-- mobile: hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
     <a href="/" class="header-logo">BOPPS</a>
     <div class="header-right">
-      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="rgba(255,255,255,.8)" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="rgba(255,255,255,.8)" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
     </div>
   </div>
+  <!-- desktop nav -->
   <nav class="header-nav">
     <a href="/pages/extend-your-warranty-1.html" class="active">Extend Your Warranty</a>
     <a href="/">HOME</a>
     <a href="/pages/contact.html">Contact Us</a>
   </nav>
-  <div class="mobile-nav" id="mobileNav"><br/>    <a href=" " class="active">Extend Your Warranty</a ><br/>    <a href="/">HOME</a ><br/>    <a href="/pages/contact.html">Contact Us</a ><br/>  </div>
+  <!-- mobile nav dropdown -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/pages/extend-your-warranty-1.html" class="active">Extend Your Warranty</a>
+    <a href="/">HOME</a>
+    <a href="/pages/contact.html">Contact Us</a>
+  </div>
 </div>
 
 <!-- ══ HERO ══ -->
@@ -451,7 +462,7 @@
       Contact Us by Email
     </a>
 
-    <a href="https://wa.me/8613480672452?text=Hi%20BOPPS%20Support%2C%20my%20Amazon%20order%20number%20is%3A%20" target="_blank" class="btn-contact">
+    <a href="https://wa.me/8613480672453?text=Hi%20BOPPS%20Support%2C%20my%20Amazon%20order%20number%20is%3A%20" target="_blank" class="btn-contact">
       Contact Us by WhatsApp
     </a>
 
@@ -658,8 +669,8 @@
       btn.disabled = false;
     });
   }
-</script
-  <script>
+</script>
+<script>
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
   hamburger.addEventListener('click', function() {
